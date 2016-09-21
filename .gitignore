@@ -8,7 +8,7 @@
 /.idea
 /build
 gradle.properties
-/androidextra/deploy.gradle
+/extra/deploy.gradle
 
 #Eclipse
 .project
