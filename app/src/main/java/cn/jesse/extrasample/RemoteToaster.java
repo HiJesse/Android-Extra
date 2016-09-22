@@ -17,9 +17,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by ykj on 15-12-25.
- */
 public class RemoteToaster implements View.OnTouchListener {
 
     Context mContext;
@@ -54,6 +51,16 @@ public class RemoteToaster implements View.OnTouchListener {
     public void show(){
 
         final TextView confirm = (TextView) mView.findViewById(R.id.tv_confirm);
+        final TextView content = (TextView) mView.findViewById(R.id.tv_content);
+
+
+        content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hide();
+                startActivityByPackage("com.ppmoney.ppstock");
+            }
+        });
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,23 +97,23 @@ public class RemoteToaster implements View.OnTouchListener {
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         //获取相对屏幕的坐标，即以屏幕左上角为原点
-        x = event.getRawX();
-        y = event.getRawY();
-        Log.i("currP", "currX"+x+"====currY"+y);
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:    //捕获手指触摸按下动作
-                //获取相对View的坐标，即以此View左上角为原点
-                mTouchStartX =  event.getX();
-                mTouchStartY =  event.getY();
-                Log.i("startP","startX"+mTouchStartX+"====startY"+mTouchStartY);
-                break;
-            case MotionEvent.ACTION_MOVE:   //捕获手指触摸移动动作
-                updateViewPosition();
-                break;
-            case MotionEvent.ACTION_UP:    //捕获手指触摸离开动作
-                updateViewPosition();
-                break;
-        }
+//        x = event.getRawX();
+//        y = event.getRawY();
+//        Log.i("currP", "currX"+x+"====currY"+y);
+//        switch (event.getAction()) {
+//            case MotionEvent.ACTION_DOWN:    //捕获手指触摸按下动作
+//                //获取相对View的坐标，即以此View左上角为原点
+//                mTouchStartX =  event.getX();
+//                mTouchStartY =  event.getY();
+//                Log.i("startP","startX"+mTouchStartX+"====startY"+mTouchStartY);
+//                break;
+//            case MotionEvent.ACTION_MOVE:   //捕获手指触摸移动动作
+//                updateViewPosition();
+//                break;
+//            case MotionEvent.ACTION_UP:    //捕获手指触摸离开动作
+//                updateViewPosition();
+//                break;
+//        }
         return true;
     }
 
